@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>肺癌免疫治疗前沿进展电子刊</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #008080;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .magazine-container {
+            width: 100%;
+            max-width: 900px;
+            height: 95vh;
+            background-color: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .page {
+            display: none;
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 导航及按钮样式一致性设计 */
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: #ffffff;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #004085;
+        }
+
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            font-size: 14px;
+            color: #666666;
+        }
+
+        /* 内容排版样式 */
+        h1 { font-size: 24px; color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+        h2 { font-size: 20px; color: var(--secondary-color); margin: 15px 0 10px; }
+        h3 { font-size: 16px; color: #444; margin: 10px 0 5px; }
+        p { font-size: 14px; line-height: 1.6; margin-bottom: 12px; text-align: justify; }
+        ul { margin-left: 20px; margin-bottom: 12px; }
+        li { font-size: 14px; line-height: 1.6; margin-bottom: 6px; }
+
+        /* 封面与预留图片区域 */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            border: 2px dashed #b0bec5;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #78909c;
+            background-color: #eceff1;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        /* 目录页格式 */
+        .toc-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted #ccc;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        .toc-item span:last-child {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="magazine-container">
+
+    <!-- 第1页：封面 -->
+    <div class="page cover-page active" id="page-1">
+        <h1>肺癌免疫治疗前沿进展电子刊</h1>
+        <div class="image-placeholder">
+            [在此处上传或替换您的封面图片]
+        </div>
+        <p>探索肺癌治疗新纪元：从晚期走向可治愈阶段</p>
+    </div>
+
+    <!-- 第2页：前言 -->
+    <div class="page" id="page-2">
+        <h1>前言</h1>
+        <p>• 肺癌是中国发病率和死亡率最高的恶性肿瘤，非小细胞肺癌（NSCLC）是肺癌的主要病理亚型，占所有肺癌病例的 85%～90%。过去二十年，靶向治疗飞速发展，使驱动基因阳性患者获得了前所未有的生存获益。而在 NSCLC 患者中，驱动基因阴性约占 40%～50%；还有对靶向治疗反应不佳的小细胞肺癌（SCLC），其恶性程度高，预后极差；这些患者无法从靶向治疗中获益，传统化疗长期是唯一选择，疗效有限、生存期短、治疗选择匮乏。免疫治疗的崛起，改变了这一局面。</p>
+        <p>• 以PD-1/PD-L1单抗为代表的免疫治疗，通过解除肿瘤对T细胞的免疫抑制，重新激活机体抗肿瘤免疫应答。KEYNOTE-189、KEYNOTE-407等里程碑式研究证实，帕博利珠单抗联合化疗显著延长了转移性NSCLC患者的总生存期，将免疫治疗推向晚期肺癌一线治疗的标准地位。</p>
+        <p>• 随着对免疫逃逸机制理解的深入，双特异性抗体（如PD-1/VEGF双抗、PD-L1/4-1BB双抗、PD-1/CTLA-4双抗）、免疫联合抗体偶联药物（ADC）、免疫联合局部治疗等新模式不断涌现，旨在克服既有免疫治疗的疗效瓶颈与耐药问题。</p>
+        <p>• 免疫治疗从晚期向可治愈阶段前移。围术期免疫治疗（新辅助/辅助）在可切除NSCLC中展现出显著获益，免疫治疗正在从“延长生存”走向“追求治愈”。</p>
+        <p>• 免疫治疗不仅显著延长了患者的生存期，更从根本上改变了肺癌的治疗逻辑。然而，免疫治疗仍面临诸多挑战：部分患者原发性耐药，部分患者获得性耐药，免疫相关不良事件的管理，以及如何精准筛选获益人群。因此，持续追踪免疫治疗的最新研究进展，对于优化临床决策、改善患者预后具有不可替代的价值。</p>
+    </div>
+
+    <!-- 第3页：目录 -->
+    <div class="page" id="page-3">
+        <h1>目录</h1>
+        <ul class="toc-list">
+            <li class="toc-item"><span>Part1：NSCLC</span><span></span></li>
+            <li class="toc-item"><span>1.1 从PD-1/PD-L1单抗到下一代免疫检查点</span><span></span></li>
+            <li class="toc-item"><span>KEYNOTE-189/KEYNOTE-407：帕博利珠单抗+化疗一线治疗NSCLC的Ⅲ期研究8年随访</span><span>第 4 页</span></li>
+            <li class="toc-item"><span>HARMONi-2：依沃西单抗 vs 帕博利珠单抗一线治疗NSCLC的Ⅲ期研究总生存分析</span><span>第 5 页</span></li>
+            <li class="toc-item"><span>HARMONi：依沃西单抗+化疗治疗EGFR-TKI耐药的EGFR突变NSCLC</span><span>第 6 页</span></li>
+            <li class="toc-item"><span>新型PD-1/VEGF双抗+化疗一线治疗NSCLC的Ⅰb期研究</span><span>第 7 页</span></li>
+            <li class="toc-item"><span>PD-L1/4-1BB双抗+化疗一线治疗NSCLC的Ⅱ期研究</span><span>第 8 页</span></li>
+            <li class="toc-item"><span>ARTEMIDE-01：PD-1/TIGIT双抗治疗未经免疫检查点抑制剂治疗NSCLC的Ⅰ/Ⅱ期研究</span><span>第 9 页</span></li>
+            <li class="toc-item"><span>PD-1/VEGF/CTLA-4三抗治疗晚期实体瘤的首次人体试验</span><span>第 10 页</span></li>
+            <li class="toc-item"><span>1.2 从免疫联合化疗走向多模式协同</span><span></span></li>
+            <li class="toc-item"><span>EVOKE-03/KEYNOTE D46：帕博利珠单抗+ADC一线治疗NSCLC的Ⅲ期研究</span><span>第 11 页</span></li>
+            <li class="toc-item"><span>LONESTAR：纳武利尤单抗+伊匹木单抗+放疗治疗NSCLC的Ⅲ期研究</span><span>第 12 页</span></li>
+            <li class="toc-item"><span>1.3 免疫治疗前移，从晚期走向可治愈阶段</span><span></span></li>
+            <li class="toc-item"><span>IMpower030：阿替利珠单抗+化疗围术期治疗可切除NSCLC的Ⅲ期研究</span><span>第 13 页</span></li>
+            <li class="toc-item"><span>MDT-BRIDGE：MDT评估度伐利尤单抗+化疗新辅助治疗可切除/临界可切除NSCLC的Ⅱ期研究</span><span>第 14 页</span></li>
+            <li class="toc-item"><span>卡度尼利单抗+化疗围术期治疗NSCLC的Ⅱ期研究</span><span>第 15 页</span></li>
+            <li class="toc-item"><span>卡度尼利单抗+化疗+治愈性同步放化疗治疗不可切除Ⅲ期NSCLC的Ⅱ期研究</span><span>第 16 页</span></li>
+            <li class="toc-item"><span>PD-1/VEGF双抗+化疗转化治疗不可切除Ⅲ期NSCLC的Ⅱ期研究</span><span>第 17 页</span></li>
+            <li class="toc-item"><span>Part2：SCLC</span><span></span></li>
+            <li class="toc-item"><span>2.1突破传统ICI，免疫治疗进入新赛道</span><span></span></li>
+            <li class="toc-item"><span>DeLLphi-309：靶向DLL3和CD3的双特异性T细胞衔接器</span><span>第 18 页</span></li>
+            <li class="toc-item"><span>靶向DLL3的CAR-T细胞疗法</span><span>第 19 页</span></li>
+        </ul>
+    </div>
+
+    <!-- 第4页：研究1 (预留图片) -->
+    <div class="page" id="page-4">
+        <h2>摘要号：P1.257</h2>
+        <h3>帕博利珠单抗+化疗治疗转移性非小细胞肺癌：KEYNOTE-189与KEYNOTE-407的8年随访结果</h3>
+        <p><strong>主要研究者/报告者：</strong>M.C. Garassino | <strong>单位：</strong>Department of Medicine, University of Chicago Medicine and Biological Sciences, 美国伊利诺伊州芝加哥</p>
+        <div class="image-placeholder">[预留图片位置：图表/生存曲线]</div>
+        <p><strong>Introduction：</strong>免疫检查点抑制剂改变了转移性非小细胞肺癌（NSCLC）的治疗格局... 本次报告KEYNOTE-189和KEYNOTE-407的9年和8年随访生存结局。</p>
+        <p><strong>Methods：</strong>研究纳入既往未经治疗、经组织学或细胞学确诊的转移性非鳞状NSCLC或鳞状NSCLC患者，随机分配接受帕博利珠单抗联合化疗或单纯化疗。</p>
+        <p><strong>Results：</strong>OS、改良的PFS及LCSS均显示帕博利珠单抗联合化疗较单纯化疗具有更优的生存结局。</p>
+        <p><strong>Conclusions：</strong>帕博利珠单抗联合化疗在转移性NSCLC患者中持续带来持久且具有临床意义的生存获益，支持其作为标准治疗方案。</p>
+    </div>
+
+    <!-- 第5页：研究2 -->
+    <div class="page" id="page-5">
+        <h2>摘要号：OA14.01</h2>
+        <h3>HARMONi-2 研究的总生存期分析：依沃西单抗对比帕博利珠单抗一线治疗PD-L1阳性NSCLC</h3>
+        <p><strong>主要研究者/报告者：</strong>周彩存 | <strong>单位：</strong>同济大学附属上海市肺科医院</p>
+        <p><strong>Introduction：</strong>依沃西单抗是全球首创的PD-1/VEGF双特异性抗体。3期临床试验HAROMNi-2既往结果显示PFS显著获益，此次报告关键次要终点总生存期（OS）的结果。</p>
+        <p><strong>Methods：</strong>入组初治、PD-L1阳性（TPS≥1%）、局部晚期或转移性NSCLC患者，按1:1随机接受依沃西单抗或帕博利珠单抗单药治疗。</p>
+        <p><strong>Results：</strong>依沃西单抗与帕博利珠单抗的中位OS分别为30.75个月 vs 22.57个月（HR 0.73; P=0.009），表明具有统计学显著性且有临床意义的生存获益。</p>
+        <p><strong>Conclusions：</strong>依沃西单抗显著延长OS且未发现新安全性信号，支持其作为一线无化疗方案的潜力。</p>
+    </div>
+
+    <!-- 第6页：研究3 -->
+    <div class="page" id="page-6">
+        <h2>摘要号：OA14.05</h2>
+        <h3>依沃西单抗+化疗对比安慰剂+化疗治疗EGFR-TKI耐药的EGFR突变NSCLC（HARMONi）：更新的总生存分析</h3>
+        <p><strong>主要研究者/报告者：</strong>A. Passaro | <strong>单位：</strong>European Institute of Oncology IRCCS, 意大利米兰</p>
+        <p><strong>Introduction：</strong>HARMONi研究是全球首项评估依沃西单抗联合化疗用于既往接受第三代EGFR-TKI治疗后疾病进展的EGFR突变NSCLC患者的Ⅲ期研究。本次报告西方队列延长随访后的长期OS分析结果。</p>
+        <p><strong>Methods：</strong>随机分配接受依沃西单抗或安慰剂联合培美曲塞和卡铂治疗。双主要终点为PFS和OS。</p>
+        <p><strong>Results：</strong>ITT人群中，依沃西单抗联合化疗组与安慰剂联合化疗组的中位OS分别为16.8个月 vs 14.0个月（HR，0.76；P=0.0151）。安全性特征与既往一致。</p>
+        <p><strong>Conclusions：</strong>依沃西单抗联合化疗在ITT人群中持续表现出持久的OS获益，且未观察到新的安全性信号。</p>
+    </div>
+
+    <!-- 第7页：研究4 (预留图片) -->
+    <div class="page" id="page-7">
+        <h2>摘要号：OA14.04</h2>
+        <h3>RC148（ABBV-1480，PD-1/VEGF双特异性抗体）联合化疗一线治疗局部晚期或转移性NSCLC</h3>
+        <p><strong>主要研究者/报告者：</strong>赵媛媛 | <strong>单位：</strong>中山大学肿瘤防治中心</p>
+        <div class="image-placeholder">[预留图片位置：疗效柱状图/ORR对比]</div>
+        <p><strong>Introduction：</strong>RC148是一种新型靶向PD-1和VEGF的双特异性抗体。本研究报告其联合含铂化疗一线治疗NSCLC患者的结果。</p>
+        <p><strong>Methods：</strong>纳入未经治疗、不可切除的ⅢB/C期或Ⅳ期NSCLC患者，鳞癌和非鳞癌患者分别接受相应联合化疗。</p>
+        <p><strong>Results：</strong>队列1中，RC148 10mg/kg组的ORR为90.0%，中位PFS为10.8个月；安全性可管理。</p>
+        <p><strong>Conclusions：</strong>RC148联合化疗显示出有希望的疗效，且不受PD-L1表达状态影响，确定10 mg/kg为Ⅲ期推荐剂量。</p>
+    </div>
+
+    <!-- 第8页：研究5 (预留图片) -->
+    <div class="page" id="page-8">
+        <h2>摘要号：MO07.06</h2>
+        <h3>PD-L1/4-1BB双特异性抗体Opamtistomig（LBL-024）联合化疗一线治疗晚期NSCLC的Ⅱ期研究</h3>
+        <p><strong>主要研究者/报告者：</strong>黄岩 | <strong>单位：</strong>中山大学肿瘤防治中心</p>
+        <div class="image-placeholder">[预留图片位置：亚组分析数据图]</div>
+        <p><strong>Introduction：</strong>Opamtistomig是一种新型PD-L1/4-1BB双特异性抗体，旨在解除PD-L1介导的免疫抑制并增强T细胞共刺激。</p>
+        <p><strong>Methods：</strong>评估Opamtistomig联合化疗治疗局部晚期或转移性NSCLC的疗效与安全性，共设4个队列进行分析。</p>
+        <p><strong>Results：</strong>在疗效可评估患者中，ORR为65.0%，PD-L1 TPS≥1%患者ORR更高。TEAE发生率可控，最常见为贫血和白细胞减少。</p>
+        <p><strong>Conclusions：</strong>Opamtistomig联合化疗在主要组织学亚型中显示出早期抗肿瘤活性，支持进一步开展临床研究。</p>
+    </div>
+
+    <!-- 第9页：研究6 -->
+    <div class="page" id="page-9">
+        <h2>摘要号：MO07.10</h2>
+        <h3>Rilvegostomig治疗未经检查点抑制剂（CPI）治疗的转移性非小细胞肺癌（mNSCLC）的更新疗效结果</h3>
+        <p><strong>主要研究者/报告者：B.C. Cho</strong> | <strong>单位：</strong>Yonsei Cancer Center, 韩国首尔</p>
+        <p><strong>Introduction：</strong>Rilvegostomig靶向PD-1和TIGIT。报告ARTEMIDE-01研究延长随访后的更新疗效结果及首次公布的OS数据。</p>
+        <p><strong>Methods：</strong>C部分和D部分患者接受Rilvegostomig单药治疗，主要终点为ORR和安全性，探索OS。</p>
+        <p><strong>Results：</strong>PD-L1 TPS≥50%队列中，确认的ORR为61.8%至68.2%，中位PFS延长至16.7个月，24个月OS率为67.6%。安全性良好。</p>
+        <p><strong>Conclusions：</strong>Rilvegostomig持续显示出可控的安全性及有意义的PFS和OS延长，支持正在开展的Ⅲ期临床研究。</p>
+    </div>
+
+    <!-- 第10页：研究7 (预留图片) -->
+    <div class="page" id="page-10">
+        <h2>摘要号：MO07.07</h2>
+        <h3>新型PD-1/VEGF/CTLA-4三特异性抗体HC010的首项人体研究：初步结果</h3>
+        <p><strong>主要研究者/报告者：</strong>马宇翔 | <strong>单位：</strong>中山大学肿瘤防治中心</p>
+        <div class="image-placeholder">[预留图片位置：三抗药效学与肿瘤缩小曲线]</div>
+        <p><strong>Introduction：</strong>HC010是一种人源化三特异性抗体，旨在同时靶向PD-1、CTLA-4和VEGF，旨在克服耐药性。</p>
+        <p><strong>Methods：</strong>Ⅰ期剂量递增及扩展研究，纳入晚期实体瘤患者，评价安全性、耐受性及疗效。</p>
+        <p><strong>Results：</strong>在69例可评价患者中，ORR为14.5%，DCR为71%。免疫治疗难治性NSCLC亚组中，单药ORR达25%。</p>
+        <p><strong>Conclusions：</strong>HC010在多种实体瘤中表现出可管理的安全性特征及有希望的初步疗效信号，支持进一步探索。</p>
+    </div>
+
+    <!-- 第11页：研究8 (预留图片) -->
+    <div class="page" id="page-11">
+        <h2>摘要号：PL02.06</h2>
+        <h3>EVOKE-03/KEYNOTE D46 Ⅲ期研究的初步结果：戈沙妥珠单抗联合帕博利珠单抗一线治疗PD-L1 TPS≥50%转移性NSCLC</h3>
+        <p><strong>主要研究者/报告者：</strong>G. Mountzios | <strong>单位：</strong>Henry Dunant Hospital Center, 希腊雅典</p>
+        <div class="image-placeholder">[预留图片位置：PFS与OS生存曲线图]</div>
+        <p><strong>Introduction：</strong>评估SG（Trop-2 ADC）联合帕博利珠单抗一线治疗PD-L1高表达mNSCLC的疗效和安全性。</p>
+        <p><strong>Methods：</strong>开放标签Ⅲ期研究，患者按1∶1随机接受SG+帕博利珠单抗或帕博利珠单抗单药治疗。</p>
+        <p><strong>Results：</strong>中位PFS在数值上长于单药组（11.8个月 vs 7.7个月），但差异未达到统计学显著性（HR，0.81；P=0.0252）。安全性特征一致。</p>
+        <p><strong>Conclusions：</strong>PFS有数值改善但未达显著性，未观察到新的或额外的毒性信号。</p>
+    </div>
+
+    <!-- 第12页：研究9 -->
+    <div class="page" id="page-12">
+        <h2>摘要号：OA14.03</h2>
+        <h3>Ⅲ期LONESTAR试验的临床结果：纳武利尤单抗+伊匹木单抗治疗NSCLC后的局部巩固治疗</h3>
+        <p><strong>主要研究者/报告者：</strong>M. Altan | <strong>单位：</strong>MD Anderson Cancer Center, 美国德克萨斯州休斯顿</p>
+        <p><strong>Introduction：</strong>评估局部巩固治疗（LCT）联合双免疫检查点抑制剂治疗免疫治疗初治的转移性NSCLC患者的疗效。</p>
+        <p><strong>Methods：</strong>诱导治疗后未进展的患者随机分配至纳武利尤单抗/伊匹木单抗组或LCT联合组。</p>
+        <p><strong>Results：</strong>总体人群中，两组中位OS分别为52.8个月和43.2个月（P=0.46）；LCT未增加≥3级不良事件发生率。</p>
+        <p><strong>Conclusions：</strong>在双免疫检查点抑制剂诱导治疗后加用LCT具有可行性，但在未经筛选的总体人群中未显著改善OS或PFS。</p>
+    </div>
+
+    <!-- 第13页：研究10 (预留图片) -->
+    <div class="page" id="page-13">
+        <h2>摘要号：OA04.03</h2>
+        <h3>Ⅲ期IMpower030研究的最终分析：阿替利珠单抗+化疗围术期治疗可切除Ⅱ-ⅢB期NSCLC</h3>
+        <p><strong>主要研究者/报告者：</strong>B. Solomon | <strong>单位：</strong>Peter MacCallum Cancer Center, 澳大利亚墨尔本</p>
+        <div class="image-placeholder">[预留图片位置：EFS与病理完全缓解率柱状图]</div>
+        <p><strong>Introduction：</strong>评估围手术期阿替利珠单抗联合铂类化疗相比安慰剂联合化疗在可切除NSCLC患者中的疗效与安全性。</p>
+        <p><strong>Methods：</strong>患者随机分配接受阿替利珠单抗或安慰剂联合铂类化疗，主要终点为IRF-EFS。</p>
+        <p><strong>Results：</strong>中位IRF-EFS分别为62.8个月 vs 34.9个月，IRF-pCR率为29.6% vs 8.5%。新辅助阶段不良事件较多。</p>
+        <p><strong>Conclusions：</strong>阿替利珠单抗联合化疗在EFS、pCR及OS等方面均观察到具有临床意义的改善，未发现新安全性信号。</p>
+    </div>
+
+    <!-- 第14页：研究11 (预留图片) -->
+    <div class="page" id="page-14">
+        <h2>摘要号：OA04.02</h2>
+        <h3>度伐利尤单抗+化疗新辅助治疗可切除/临界可切除ⅡB-ⅢB期NSCLC：MDT-BRIDGE试验初步分析</h3>
+        <p><strong>主要研究者/报告者：</strong>M. Reck | <strong>单位：</strong>Lung Clinic Großhansdorf, 德国大汉斯多夫</p>
+        <div class="image-placeholder">[预留图片位置：MDT评估流程与切除率分布]</div>
+        <p><strong>Introduction：</strong>评估围手术期度伐利尤单抗联合化疗用于可切除/临界可切除NSCLC患者的疗效及不可切除者的CRT巩固疗效。</p>
+        <p><strong>Methods：</strong>全球性、非随机研究，经MDT评估后接受度伐利尤单抗+化疗，根据再评估结果行手术或CRT。</p>
+        <p><strong>Results：</strong>总体切除率为74.6%，R0切除率为96.2%。可切除组pCR率为27.3%，12个月EFS率为90.1%。</p>
+        <p><strong>Conclusions：</strong>密切的MDT随访使大多数患者能够接受根治性治疗，初步疗效显现积极趋势且安全性可控。</p>
+    </div>
+
+    <!-- 第15页：研究12 -->
+    <div class="page" id="page-15">
+        <h2>摘要号：P1.121</h2>
+        <h3>卡度尼利单抗+化疗围术期治疗Ⅱ-ⅢA期NSCLC：Ⅱ期试验的初步分析</h3>
+        <p><strong>主要研究者/报告者：</strong>王慧娟 | <strong>单位：</strong>郑州大学附属肿瘤医院/河南省肿瘤医院</p>
+        <p><strong>Introduction：</strong>评估围术期卡度尼利单抗（PD-1/CTLA-4双抗）联合化疗用于可切除NSCLC的疗效与安全性。</p>
+        <p><strong>Methods：</strong>符合条件患者接受新辅助卡度尼利单抗联合化疗，随后手术并接受辅助单药治疗。主要终点为pCR率。</p>
+        <p><strong>Results：</strong>78.9%患者接受根治性手术，其中83.3%实现R0切除。pCR率为28.9%，MPR率为52.6%。安全性良好。</p>
+        <p><strong>Conclusions：</strong>围术期卡度尼利单抗联合化疗可获得具有临床意义的病理学缓解，未影响手术可行性。</p>
+    </div>
+
+    <!-- 第16页：研究13 (预留图片) -->
+    <div class="page" id="page-16">
+        <h2>摘要号：PT1.08.03</h2>
+        <h3>卡度尼利单抗诱导和巩固接受同步放化疗的不可切除III期NSCLC：一项2期试验</h3>
+        <p><strong>主要研究者/报告者：</strong>储黎 | <strong>单位：</strong>复旦大学附属肿瘤医院</p>
+        <div class="image-placeholder">[预留图片位置：1年PFS率与生存曲线]</div>
+        <p><strong>Introduction：</strong>评估PD-1/CTLA-4双抗卡度尼利单抗作为不可切除Ⅲ期NSCLC诱导和巩固治疗的疗效与安全性。</p>
+        <p><strong>Methods：</strong>患者接受卡度尼利单抗联合化疗诱导，随后行cCRT及最长1年巩固治疗。共同主要终点为1年PFS率。</p>
+        <p><strong>Results：</strong>mITT人群1年PFS1率为69.2%，符合巩固条件患者1年PFS2率为65.0%。ORR为85.4%，肺炎等毒性可控。</p>
+        <p><strong>Conclusions：</strong>卡度尼利单抗诱导和巩固治疗展现出令人鼓舞的疗效和可控的安全性特征。</p>
+    </div>
+
+    <!-- 第17页：研究14 (预留图片) -->
+    <div class="page" id="page-17">
+        <h2>摘要号：OA09.03</h2>
+        <h3>PD-1/VEGF双特异性抗体JS207联合化疗治疗不可切除III期NSCLC的II期研究</h3>
+        <p><strong>主要研究者/报告者：</strong>吴一龙 | <strong>单位：</strong>广东省人民医院</p>
+        <div class="image-placeholder">[预留图片位置：手术转化率与病理缓解图]</div>
+        <p><strong>Introduction：</strong>旨在评估JS207（PD-1/VEGF双抗）联合铂类双药化疗治疗不可切除Ⅲ期NSCLC患者的疗效和安全性。</p>
+        <p><strong>Methods：</strong>设置安全性导入期后开展新辅助治疗，由MDT评估后续手术方案，主要终点为pCR率。</p>
+        <p><strong>Results：</strong>52.4%的患者在治疗后成功接受手术；pCR率为54.5%，MPR率为72.7%。最常见TEAE为贫血和中性粒细胞降低。</p>
+        <p><strong>Conclusions：</strong>JS207联合化疗显示出令人鼓舞的手术转化率和pCR率，安全性总体可接受。</p>
+    </div>
+
+    <!-- 第18页：研究15 (预留图片) -->
+    <div class="page" id="page-18">
+        <h2>摘要号：OA05.01</h2>
+        <h3>塔拉妥单抗延长间隔给药方案治疗SCLC患者：随机2期DeLLphi-309研究</h3>
+        <p><strong>主要研究者/报告者：</strong>J. Goldman | <strong>单位：</strong>University of California Los Angeles, 美国加州洛杉矶</p>
+        <div class="image-placeholder">[预留图片位置：不同给药方案疗效对比图]</div>
+        <p><strong>Introduction：</strong>评估塔拉妥单抗延长给药间隔方案（20 mg-Q3W和30 mg-Q4W）在SCLC患者中的疗效、安全性和PK特征。</p>
+        <p><strong>Methods：</strong>复发SCLC患者随机接受不同间隔方案静脉给药，主要终点为BICR确认的ORR。</p>
+        <p><strong>Results：</strong>各组ORR、PFS及OS等结果相近，CRS以1-2级为主，Ctrough几何平均值相当。</p>
+        <p><strong>Conclusions：</strong>延长给药间隔方案的疗效、安全性及PK特征与已获批方案基本一致，可提供更大治疗灵活性。</p>
+    </div>
+
+    <!-- 第19页：研究16 -->
+    <div class="page" id="page-19">
+        <h2>摘要号：OA05.02</h2>
+        <h3>LB2102（一种经dnTGFBR2增强靶向DLL3的自体CAR-T细胞疗法）治疗复发或难治性SCLC或LCNEC的I期研究</h3>
+        <p><strong>主要研究者/报告者：</strong>A. Chiappori | <strong>单位：</strong>Moffitt Cancer Center, 美国弗罗里达州</p>
+        <p><strong>Introduction：</strong>评价LB2102（靶向DLL3并装载dnTGFBR2的CAR-T细胞）治疗复发/难治性SCLC或LCNEC的安全性与耐受性。</p>
+        <p><strong>Methods：</strong>开放标签、多中心Ⅰ期研究，采用i3+3设计进行剂量递增，单次输注LB2102。</p>
+        <p><strong>Results：</strong>耐受性良好，未发生DLT。SCLC患者在接受≥2×10^6 CAR-T细胞/kg剂量后，ORR为33%，DCR为83%。</p>
+        <p><strong>Conclusions：</strong>LB2102耐受性好，CRS和ICANS可控，观察到一致的CAR-T细胞扩增及令人鼓舞的抗肿瘤活性。</p>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="nav-footer">
+        <button class="btn" id="prev-btn" onclick="changePage(-1)" disabled>上一页</button>
+        <div class="page-indicator" id="page-indicator">第 1 / 19 页</div>
+        <button class="btn" id="next-btn" onclick="changePage(1)">下一页</button>
+    </div>
+
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 19;
+
+    function changePage(direction) {
+        const oldPageElement = document.getElementById(`page-${currentPage}`);
+        oldPageElement.classList.remove('active');
+
+        currentPage += direction;
+
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        const newPageElement = document.getElementById(`page-${currentPage}`);
+        newPageElement.classList.add('active');
+
+        // 更新按钮和页码显示状态
+        document.getElementById('prev-btn').disabled = (currentPage === 1);
+        document.getElementById('next-btn').disabled = (currentPage === totalPages);
+        document.getElementById('page-indicator').innerText = `第 ${currentPage} / ${totalPages} 页`;
+
+        // 翻页后内容回到顶部
+        newPageElement.scrollTop = 0;
+    }
+</script>
+
+</body>
+</html>
